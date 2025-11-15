@@ -11,7 +11,7 @@ public class App_main {
 		abrirProyecto(sistema);
 		abrirTarea(sistema);
 		despeglarMenu(sistema);
-		
+		int a = 1+1;
 		
 		
 
