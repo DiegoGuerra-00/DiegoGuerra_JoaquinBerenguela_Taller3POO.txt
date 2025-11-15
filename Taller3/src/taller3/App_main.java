@@ -1,11 +1,23 @@
 package taller3;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class App_main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException {
+		Sistema sistema =  SistemaImpl.getIsntancia();
+		abrirProyecto(sistema);
+		despeglarMenu(sistema);
+		
+		
 
+	}
+	
+	public static void despeglarMenu(Sistema sistema) {
+		
+		
 		Scanner scan = new Scanner(System.in);
 		String menuElegido = "";
 
@@ -27,7 +39,8 @@ public class App_main {
 
 				switch (OpcionElegid) { // incio opciones usuario
 				case 1:
-
+					
+					sistema.mostrarListaProyectos();
 					break;
 
 				case 2:
@@ -77,7 +90,30 @@ public class App_main {
 
 		} while (!menuElegido.equalsIgnoreCase("s"));
 		System.out.println("Saliendo...");
-
+		scan.close();
+		
 	}
-
+	public static void abrirProyecto(Sistema sistema) throws FileNotFoundException {
+		Scanner s = new Scanner(new File("proyectos.txt"));
+		while(s.hasNextLine()) {
+			String linea = s.nextLine();
+			String[] partes = linea.split("\\|");
+			
+			String idproyecto = partes[0];
+			String nombreProyecto = partes[1];
+			String responsableProyecto = partes[2];
+			
+			sistema.agregarProyecto(idproyecto, nombreProyecto, responsableProyecto);
+			
+		}
+		
+		
+		
+	}
+	public static void abrirTarea(Sistema sistema) {
+		
+	}
+	public static void arbrirUsuario(Sistema sistema ) {
+		
+	}
 }
