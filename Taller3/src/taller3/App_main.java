@@ -9,7 +9,9 @@ public class App_main {
 	public static void main(String[] args) throws FileNotFoundException {
 		Sistema sistema =  SistemaImpl.getIsntancia();
 		abrirProyecto(sistema);
+		abrirTarea(sistema);
 		despeglarMenu(sistema);
+		
 		
 		
 
