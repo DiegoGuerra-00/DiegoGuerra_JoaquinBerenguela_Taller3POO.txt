@@ -67,6 +67,7 @@ public class SistemaImpl implements Sistema {
 		String idElegido;
 		System.out.println("Listado de tareas ");
 		System.out.println();
+		System.out.println("ID");
 		for(Tarea tareas : listaTarea) {
 			System.out.println(tareas.getIdProyecto() +"|"+tareas.getDescripcionTarea()+" (Estado : "+tareas.getEstadoTarea()+")");	
 		}
@@ -81,7 +82,7 @@ public class SistemaImpl implements Sistema {
 				System.out.print("Ingrese el nuevo estado de la tarea (Pendiente / En progreso / Completada): ");
 				estadoTarea = scan.nextLine();
 				tarea.setEstadoTarea(estadoTarea);
-				System.out.println("El estado de la tarea "+tarea.getDescripcionTarea()+ " ha sido actualizado!");
+				System.out.println("El estado de la tarea "+" '"+tarea.getDescripcionTarea()+"' "+ "ha sido actualizado!");
 				System.out.println("Estado : "+tarea.getEstadoTarea());
 				
 			}
