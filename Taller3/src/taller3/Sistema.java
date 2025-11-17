@@ -14,7 +14,7 @@ public interface Sistema {
 	
 	void agregarUsuario(String usuario,String contraseña,String rol);
 	void agregarProyecto(String idProyect,String NombreProyect, String usuarioProyecto);
-	void agregarTareas(Proyecto proyecto, String idTarea,String descripcion, String estado, String responsable, String complejidad, String fecha );
+	void agregarTareas(String proyecto, String idTarea,String tipo, String descripcion, String estado, String responsable, String complejidad, String fecha );
 	
 	
 	

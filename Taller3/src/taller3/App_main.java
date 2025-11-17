@@ -10,8 +10,8 @@ public class App_main {
 		Sistema sistema =  SistemaImpl.getIsntancia();
 		abrirProyecto(sistema);
 		abrirTarea(sistema);
+		arbrirUsuario(sistema);
 		despeglarMenu(sistema);
-		int a = 1+1;
 		
 		
 
@@ -46,10 +46,14 @@ public class App_main {
 					break;
 
 				case 2:
+					sistema.filtrarTareasUsuario();
 					break;
 				case 3:
+					sistema.actualizarEstadoTarea();
 					break;
 				case 4:
+					sistema.aplicarVisitorTareas();
+
 					break;
 				case 5:
 					break;
@@ -97,7 +101,7 @@ public class App_main {
 	}
 	public static void abrirProyecto(Sistema sistema) throws FileNotFoundException {
 		Scanner s = new Scanner(new File("proyectos.txt"));
-		while(s.hasNextLine()) {
+		while(s.hasNextLine()) { //se accede a la arch "proyectos" y se rellena la listaProyectos del Sistema
 			String linea = s.nextLine();
 			String[] partes = linea.split("\\|");
 			
@@ -108,14 +112,43 @@ public class App_main {
 			sistema.agregarProyecto(idproyecto, nombreProyecto, responsableProyecto);
 			
 		}
+		s.close();
 		
 		
 		
 	}
-	public static void abrirTarea(Sistema sistema) {
+	public static void abrirTarea(Sistema sistema) throws FileNotFoundException {
+		Scanner s = new Scanner(new File("tareas.txt"));
+		while(s.hasNextLine()) { // metodo para acceder al arch "tareas" y guardar los datos
+			String linea = s.nextLine();
+			String[] partes = linea.split("\\|");
+			
+			String proyecto = partes[0];
+			String idProyecto = partes[1];
+			String tipoProyecto = partes[2];
+			String descProyecto = partes[3];
+			String estadoProyecto = partes[4];
+			String responsable = partes[5];
+			String complejidadProyecto = partes[6];
+			String fechaProyecto = partes[7];
+			sistema.agregarTareas(proyecto, idProyecto, tipoProyecto, descProyecto, estadoProyecto, responsable, complejidadProyecto, fechaProyecto);
 		
+	   }s.close();
 	}
-	public static void arbrirUsuario(Sistema sistema ) {
+	public static void arbrirUsuario(Sistema sistema ) throws FileNotFoundException {
+		Scanner s = new Scanner(new File("usuarios_.txt"));
+		while(s.hasNextLine()) { // metodo para acceder al arch "usuarios" y guardar los datos
+			String linea = s.nextLine();
+			String[] partes = linea.split("\\|");
+			
+			String usuario = partes[0];
+			String contraseña = partes[1];
+			String rol = partes[2];
+			
+			sistema.agregarUsuario(usuario, contraseña, rol);
+			
+		}s.close();
+		
 		
 	}
 }
