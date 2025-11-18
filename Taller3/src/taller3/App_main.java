@@ -14,6 +14,7 @@ public class App_main {
 		despeglarMenu(sistema);
 		
 		String matias = "MATIAS:v";
+		String matias2 = "XD";
 
 	}
 	
