@@ -13,7 +13,8 @@ public class App_main {
 		arbrirUsuario(sistema);
 		despeglarMenu(sistema);
 		
-		
+		String matias = "MATIAS:v";
+		String matias2 = "XD";
 
 	}
 	
