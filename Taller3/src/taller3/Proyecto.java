@@ -6,6 +6,7 @@ public class Proyecto {
 	private String idProyect;
 	private String nombreProyect;
 	private String responsableProyect;
+	
 	private ArrayList<Tarea> listaTareas;
 	
 	public Proyecto(String idProyect, String nombreProyect, String responsableProyect) {

@@ -69,14 +69,14 @@ public class SistemaImpl implements Sistema {
 		System.out.println();
 		System.out.println("ID");
 		for(Tarea tareas : listaTarea) {
-			System.out.println(tareas.getIdProyecto() +"|"+tareas.getDescripcionTarea()+" (Estado : "+tareas.getEstadoTarea()+")");	
+			System.out.println(tareas.getidProyecto() +"|"+tareas.getDescripcionTarea()+" (Estado : "+tareas.getEstadoTarea()+")");	
 		}
 		System.out.println();
 		System.out.print("Eliga la id del proyecto: ");
 		idElegido = scan.nextLine();
 		
 		for(Tarea tarea : listaTarea) {
-			if(tarea.getIdProyecto().equalsIgnoreCase(idElegido)) {
+			if(tarea.getidProyecto().equalsIgnoreCase(idElegido)) {
 				System.out.println("Estado actual de la tarea: "+tarea.getEstadoTarea());
 				String estadoTarea;
 				System.out.print("Ingrese el nuevo estado de la tarea (Pendiente / En progreso / Completada): ");
@@ -117,7 +117,24 @@ public class SistemaImpl implements Sistema {
 
 	@Override
 	public void mostrarTodosProyectosTareas() {
-		// TODO Auto-generated method stub
+		System.out.println("Lista completa de proyectos y sus tareas");
+		System.out.println();
+		
+		for(Proyecto proyecto : listaProyecto) {
+			System.out.println("El proyecto '"+proyecto.getNombreProyect()+"' tiene las siguientes tareas: ");
+			ArrayList<Tarea> tareas = proyecto.getListaTareas();
+			for(Tarea tarea : tareas) {
+				System.out.println("--> "+tarea.getDescripcionTarea()+" ("+tarea.getEstadoTarea()+")");
+			}
+			System.out.println();
+//			for(int i= 0; i<tareas.size(); i++) {
+//				System.out.println("--> "+tareas.get(2));
+//			}
+//			System.out.println();
+//			
+			
+			
+		}
 		
 	}
 
@@ -157,6 +174,7 @@ public class SistemaImpl implements Sistema {
 		listaProyecto.add(proyecto);
 		
 		
+		
 	}
 
 	@Override
@@ -164,6 +182,16 @@ public class SistemaImpl implements Sistema {
 			String complejidad, String fecha) {
 		Tarea tarea = new Tarea(proyecto, idTarea, tipo, descripcion, estado, responsable, complejidad, fecha);
 		listaTarea.add(tarea);
+		
+		for(Proyecto proyect : listaProyecto) { // agrega tareas del proyecto en especifico 
+			if(proyect.getIdProyect().equalsIgnoreCase(tarea.getidProyecto())) {
+				proyect.agregarTareas(tarea);
+				
+			}
+		}
 	}
+	
+	
+	
 
 }

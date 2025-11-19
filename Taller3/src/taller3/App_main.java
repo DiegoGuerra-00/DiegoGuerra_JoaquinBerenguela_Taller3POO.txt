@@ -74,7 +74,7 @@ public class App_main {
 				
 				switch (OpcionElegid2) {//inicio switch opciones admin 
 				case 1:
-					
+					sistema.mostrarTodosProyectosTareas();
 					break;
 
 				case 2:

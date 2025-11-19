@@ -1,8 +1,8 @@
 package taller3;
 
 public class Tarea implements Visitoraccept {
-	private String proyecto;
-	private String idProyecto;
+	private String idproyecto;
+	private String idtarea;
 	private String tipo;
 	private String descripcionTarea;
 	private String estadoTarea;
@@ -10,11 +10,11 @@ public class Tarea implements Visitoraccept {
 	private String complejidad;
 	private String fecha;
 	
-	public Tarea(String proyecto,String idProyecto, String tipo, String descripcionTarea, String estadoTarea,
+	public Tarea(String idroyecto,String idtarea, String tipo, String descripcionTarea, String estadoTarea,
 			String responsabelTarea, String complejidad, String fecha) {
 		super();
-		this.proyecto = proyecto;
-		this.idProyecto = idProyecto;
+		this.idproyecto = idroyecto;
+		this.idtarea = idtarea;
 		this.tipo = tipo;
 		this.descripcionTarea = descripcionTarea;
 		this.estadoTarea = estadoTarea;
@@ -22,12 +22,12 @@ public class Tarea implements Visitoraccept {
 		this.complejidad = complejidad;
 		this.fecha = fecha;
 	}
-	public String getProyecto() {
-		return proyecto;
+	public String getidProyecto() {
+		return idproyecto;
 	}
 
-	public String getIdProyecto() {
-		return idProyecto;
+	public String getIdTarea() {
+		return idtarea;
 	}
 
 	public String getTipoTarea() {
@@ -54,10 +54,10 @@ public class Tarea implements Visitoraccept {
 		return fecha;
 	}
 	public void setProyecto(String proyecto) {
-		this.proyecto = proyecto;
+		this.idproyecto = proyecto;
 	}
 	public void setIdProyecto(String idProyecto) {
-		this.idProyecto = idProyecto;
+		this.idproyecto = idProyecto;
 	}
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
