@@ -76,22 +76,40 @@ public class App_main {
 				case 1:
 					sistema.mostrarTodosProyectosTareas();
 					break;
-
 				case 2:
+					sistema.agregarOEliminarProyectosYTareasAsociadas();
 					break;
 				case 3:
+					sistema.agregarOEliminarTareaProyecto();
 					break;
 				case 4:
+					System.out.println("Seleccione estrategia de prioridad:");
+				    System.out.println("1) Según fecha");
+				    System.out.println("2) Según tipo de tarea");
+				    System.out.println("3) Según complejidad");
+				    
+				    int opc = Integer.valueOf(scan.nextLine());
+				    sistema.asignarPrioridadesStrategy();
+				    
+				    switch(opc) {
+				    	
+				    case 1:
+				    	sistema.setPrioridadStrategy(new PrioridadPorFechaCreacionStrategy());
+				    	break;
+				    case 2: 
+				    	sistema.setPrioridadStrategy(new PrioridadTipoStrategy());
+				    	break;
+				    case 3:
+				    	sistema.setPrioridadStrategy(new PrioridadPorComplejidadStrategy());
+				    	break;
+				    }				    
+				    
 					break;
 				case 5:
-					break;
-				case 6:
+					sistema.generarReporteProyecto();
 					break;	
 				}//fin switch opciones Admin 
-				
-				
 				break; // break menu admin
-
 			}// fin switch
 
 		} while (!menuElegido.equalsIgnoreCase("s"));

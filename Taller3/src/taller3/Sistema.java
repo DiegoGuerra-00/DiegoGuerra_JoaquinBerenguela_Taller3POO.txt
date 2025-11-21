@@ -16,7 +16,7 @@ public interface Sistema {
 	void agregarProyecto(String idProyect,String NombreProyect, String usuarioProyecto);
 	void agregarTareas(String proyecto, String idTarea,String tipo, String descripcion, String estado, String responsable, String complejidad, String fecha );
 	
-	
+	void setPrioridadStrategy(PrioridadStrategy strategy);
 	
 
 

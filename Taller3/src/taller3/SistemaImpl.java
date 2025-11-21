@@ -10,6 +10,7 @@ public class SistemaImpl implements Sistema {
 	private ArrayList<Tarea> listaTarea = new ArrayList<>();
 	
 	private static SistemaImpl instancia;
+	private PrioridadStrategy strategy;
 	
 	private SistemaImpl() {}
 	
@@ -182,7 +183,6 @@ public class SistemaImpl implements Sistema {
 				
 			}
 			System.out.println("El proyecto seleccionado ha sido \n eliminado junto con sus tareas con éxito");
-			
 		}
 	}
 
@@ -212,23 +212,30 @@ public class SistemaImpl implements Sistema {
 			
 			System.out.println("Responsable:");
 			String nuevoResponsable = s.nextLine();
+			
+			System.out.println("Complejidad (Baja / Media / Alta):");
+			String complejidadNueva = s.nextLine();
+			
+			System.out.println("Ingrese fecha de creación (aaaa-mm-dd)");
+			String fechaNueva = s.nextLine();
 
 			String nuevoIDParaTarea = "PR" + "0" + "0" + (listaTarea.size() + 1);
 
 //			FALTA COMPLEJIDAD
-//			Tarea nuevaTarea = new Tarea(proyectoSeleccionado, nuevoIDParaTarea, tipoTareaNueva,
-//										nuevaDescripcion, nuevoEstadoInicial, nuevoResponsable,
-//										);
+			Tarea nuevaTarea = new Tarea(proyectoSeleccionado, nuevoIDParaTarea, tipoTareaNueva,
+										nuevaDescripcion, nuevoEstadoInicial, nuevoResponsable,
+										complejidadNueva, fechaNueva);
 
 			for (Proyecto proyecto : listaProyecto) {
 
 				if (proyecto.getIdProyect().equalsIgnoreCase(proyectoSeleccionado)) {
 
-					proyecto.getListaTareas().add(null);
-
+					proyecto.getListaTareas().add(nuevaTarea);
+					break;
 				}
-
+				
 			}
+			System.out.println("Tarea agregada con éxito");
 
 		} else if (decision.equalsIgnoreCase("E")) {
 
@@ -259,13 +266,24 @@ public class SistemaImpl implements Sistema {
 
 	@Override
 	public void asignarPrioridadesStrategy() {
-		// TODO Auto-generated method stub
+		System.out.println("Aplicando estrategia de prioridad");
+		strategy.asignarPrioridad(listaTarea);
 		
 	}
+	
+	@Override
+	public void setPrioridadStrategy(PrioridadStrategy strategy) {
+		this.strategy = strategy;
+	}
+	
 
 	@Override
 	public void generarReporteProyecto() {
-		// TODO Auto-generated method stub
+		
+		
+		
+		
+		
 		
 	}
 
