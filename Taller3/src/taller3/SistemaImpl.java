@@ -10,13 +10,19 @@ public class SistemaImpl implements Sistema {
 	private ArrayList<Tarea> listaTarea = new ArrayList<>();
 	
 	private static SistemaImpl instancia;
+
 	private PrioridadStrategy strategy;
+
+	private Factory factory;
 	
+	private SistemaImpl(Factory factory) {
+		this.factory = factory;
+	}	
 	private SistemaImpl() {}
 	
 	public static SistemaImpl getIsntancia() {
 		if(instancia == null) { //singleteon 
-			instancia = new SistemaImpl();
+			instancia = new SistemaImpl(new FactoryIMPL());
 			
 		}
 		return instancia;
@@ -289,13 +295,13 @@ public class SistemaImpl implements Sistema {
 
 	@Override
 	public void agregarUsuario(String usuario_ , String contraseña, String rol) {
-		Usuario usuario = new  Usuario(usuario_, contraseña, rol);
+		Usuario usuario = factory.crearUsuario(usuario_, contraseña, rol);
 		listaUsuario.add(usuario);
 	}
 
 	@Override
 	public void agregarProyecto(String idProyect, String NombreProyect, String usuarioProyecto) {
-		Proyecto proyecto = new Proyecto(idProyect, NombreProyect, usuarioProyecto);
+		Proyecto proyecto = factory.crearProyecto(idProyect, NombreProyect, usuarioProyecto);
 		listaProyecto.add(proyecto);
 		
 		
@@ -305,7 +311,7 @@ public class SistemaImpl implements Sistema {
 	@Override
 	public void agregarTareas(String proyecto, String idTarea,String tipo, String descripcion, String estado, String responsable,
 			String complejidad, String fecha) {
-		Tarea tarea = new Tarea(proyecto, idTarea, tipo, descripcion, estado, responsable, complejidad, fecha);
+		Tarea tarea = factory.crearTareas(proyecto, idTarea, tipo, descripcion, estado, responsable, complejidad, fecha);
 		listaTarea.add(tarea);
 		
 		for(Proyecto proyect : listaProyecto) { // agrega tareas del proyecto en especifico 
