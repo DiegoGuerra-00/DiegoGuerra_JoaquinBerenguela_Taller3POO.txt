@@ -7,8 +7,8 @@ public interface Sistema {
 	void aplicarVisitorTareas();
 	
 	void mostrarTodosProyectosTareas();
-	void agregarEliminarProyectos();
-	void agregaroEliminarTareaProyecto();
+	void agregarOEliminarProyectosYTareasAsociadas();
+	void agregarOEliminarTareaProyecto();
 	void asignarPrioridadesStrategy();
 	void generarReporteProyecto();
 	

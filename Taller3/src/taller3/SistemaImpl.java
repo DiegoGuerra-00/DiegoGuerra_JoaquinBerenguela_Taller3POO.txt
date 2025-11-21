@@ -16,6 +16,8 @@ public class SistemaImpl implements Sistema {
 		this.factory = factory;
 	}
 	
+	private SistemaImpl() {}
+	
 	public static SistemaImpl getIsntancia() {
 		if(instancia == null) { //singleteon 
 			instancia = new SistemaImpl(new FactoryIMPL());
@@ -144,15 +146,120 @@ public class SistemaImpl implements Sistema {
 	}
 
 	@Override
-	public void agregarEliminarProyectos() {
-		// TODO Auto-generated method stub
+	public void agregarOEliminarProyectosYTareasAsociadas() {
 		
+		Scanner s = new Scanner(System.in);
+		
+		System.out.println("Agregar o eliminar proyecto (a/e):");
+		String decision = s.nextLine();
+		if(decision.equalsIgnoreCase("A")) {
+			
+			System.out.println("Ingrese su nombre:");
+			String nombre = s.nextLine();
+			System.out.println("Ingrese responsable");
+			String responsable = s.nextLine();
+			
+			String idNuevo = "PR" + "0" + "0" + (listaProyecto.size() + 1);
+			
+			Proyecto nuevoProyecto = new Proyecto(idNuevo, nombre, responsable);
+			listaProyecto.add(nuevoProyecto);
+			System.out.println("Proyecto creado y agregado con éxito");
+			
+		}else if(decision.equalsIgnoreCase("E")) {
+			
+			System.out.println("Elija el proyecto a eliminar por su ID");
+			
+			mostrarListaProyectos();
+			
+			String proyectoAEliminar = s.nextLine();
+			
+			for (Proyecto proyecto : listaProyecto) {
+				
+				if(proyecto.getIdProyect().equalsIgnoreCase(proyectoAEliminar)) {
+					for (Tarea tarea : listaTarea) {
+						if(tarea.getIdTarea().equalsIgnoreCase(proyectoAEliminar)) {
+							listaTarea.remove(tarea);
+						}
+					}
+					listaProyecto.remove(proyecto);
+					break;
+				}
+				
+			}
+			System.out.println("El proyecto seleccionado ha sido \n eliminado junto con sus tareas con éxito");
+			
+		}
 	}
 
 	@Override
-	public void agregaroEliminarTareaProyecto() {
-		// TODO Auto-generated method stub
+	public void agregarOEliminarTareaProyecto() {
 		
+		Scanner s = new Scanner(System.in);
+		
+		System.out.println("Agregar o eliminar una tarea de un proyecto (a/e):");
+		String decision = s.nextLine();
+		
+		if(decision.equalsIgnoreCase("A")) {
+			
+			mostrarListaProyectos();			
+			System.out.println("Elija el proyecto por su ID (PRnnn)");
+			String proyectoSeleccionado = s.nextLine();
+			
+			System.out.println("Ingrese tipo de tarea:");
+			System.out.println("Estos pueden ser: 'Bug', 'Feature', 'Documentacion' ");
+			String tipoTareaNueva = s.nextLine();
+			
+			System.out.println("Añada una descripción:");
+			String nuevaDescripcion = s.nextLine();
+			
+			System.out.println("Estado inicial (Pendiente / En progreso / Completada)");
+			String nuevoEstadoInicial = s.nextLine();
+			
+			System.out.println("Responsable:");
+			String nuevoResponsable = s.nextLine();
+
+			String nuevoIDParaTarea = "PR" + "0" + "0" + (listaTarea.size() + 1);
+
+//			FALTA COMPLEJIDAD
+//			Tarea nuevaTarea = new Tarea(proyectoSeleccionado, nuevoIDParaTarea, tipoTareaNueva,
+//										nuevaDescripcion, nuevoEstadoInicial, nuevoResponsable,
+//										);
+
+			for (Proyecto proyecto : listaProyecto) {
+
+				if (proyecto.getIdProyect().equalsIgnoreCase(proyectoSeleccionado)) {
+
+					proyecto.getListaTareas().add(null);
+
+				}
+
+			}
+
+		} else if (decision.equalsIgnoreCase("E")) {
+
+			mostrarListaProyectos();
+			System.out.println("Elija el proyecto por su ID (PRnnn)");
+			String proyectoSeleccionado = s.nextLine();
+			
+			//FALTA IMPRIMIR LAS TAREAS CON LOS PROYECTOS
+			
+			System.out.println("Elija la tarea a eliminar según el ID:");
+			String idTarea = s.nextLine();
+			
+			for (Proyecto proyecto : listaProyecto) {
+				if(proyecto.getIdProyect().equalsIgnoreCase(proyectoSeleccionado)) {
+					for (Tarea tarea: listaTarea) {
+						if(proyecto.getIdProyect().equalsIgnoreCase(tarea.getidProyecto()) && 
+							tarea.getIdTarea().equalsIgnoreCase(idTarea)) {
+							proyecto.getListaTareas().remove(tarea);
+							break;
+						}
+					}
+					System.out.println("Tarea eliminada con éxito");
+					break;
+				}
+			}
+		}
 	}
 
 	@Override
