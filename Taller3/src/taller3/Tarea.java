@@ -12,7 +12,6 @@ public class Tarea implements Visitoraccept {
 	
 	public Tarea(String idroyecto,String idtarea, String tipo, String descripcionTarea, String estadoTarea,
 			String responsabelTarea, String complejidad, String fecha) {
-		super();
 		this.idproyecto = idroyecto;
 		this.idtarea = idtarea;
 		this.tipo = tipo;

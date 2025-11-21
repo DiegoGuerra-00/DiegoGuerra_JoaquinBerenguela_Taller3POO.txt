@@ -89,7 +89,6 @@ public class App_main {
 				    System.out.println("3) Según complejidad");
 				    
 				    int opc = Integer.valueOf(scan.nextLine());
-				    sistema.asignarPrioridadesStrategy();
 				    
 				    switch(opc) {
 				    	
@@ -102,12 +101,14 @@ public class App_main {
 				    case 3:
 				    	sistema.setPrioridadStrategy(new PrioridadPorComplejidadStrategy());
 				    	break;
-				    }				    
-				    
+				    }		
+				    sistema.asignarPrioridadesStrategy();
 					break;
 				case 5:
 					sistema.generarReporteProyecto();
 					break;	
+				case 6:
+					break;
 				}//fin switch opciones Admin 
 				break; // break menu admin
 			}// fin switch

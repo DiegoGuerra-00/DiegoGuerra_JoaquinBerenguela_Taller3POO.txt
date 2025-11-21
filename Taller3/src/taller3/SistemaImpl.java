@@ -1,5 +1,7 @@
 package taller3;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -250,6 +252,14 @@ public class SistemaImpl implements Sistema {
 			String proyectoSeleccionado = s.nextLine();
 			
 			//FALTA IMPRIMIR LAS TAREAS CON LOS PROYECTOS
+			System.out.println();
+			for (Proyecto proyecto : listaProyecto) {
+				for (Tarea tarea : proyecto.getListaTareas()) {
+					if(tarea.getidProyecto().equalsIgnoreCase(proyectoSeleccionado))
+					System.out.println(tarea.getIdTarea() + tarea.getDescripcionTarea());
+				}
+			}
+		System.out.println();
 			
 			System.out.println("Elija la tarea a eliminar según el ID:");
 			String idTarea = s.nextLine();
@@ -272,7 +282,13 @@ public class SistemaImpl implements Sistema {
 
 	@Override
 	public void asignarPrioridadesStrategy() {
-		System.out.println("Aplicando estrategia de prioridad");
+		
+		if (strategy == null) {
+			System.out.println("No hay estrategia seleccionada.");
+			return;
+		}
+
+		System.out.println("Aplicando Strategy de prioridad \n");
 		strategy.asignarPrioridad(listaTarea);
 		
 	}
@@ -286,6 +302,32 @@ public class SistemaImpl implements Sistema {
 	@Override
 	public void generarReporteProyecto() {
 		
+		try {
+			FileWriter fw = new FileWriter("reporte.txt");
+			fw.write("--- REPORTE DE PROYECTOS ---\n");
+			
+			for (Proyecto proyecto : listaProyecto) {
+				fw.write("\nProyecto: " + proyecto.getIdProyect() +
+	                     " | " + proyecto.getNombreProyect() + " " + 
+	                     "Responsable: " + proyecto.getResponsableProyect() + "\n");
+	            fw.write("--------------TAREAS---------------\n");
+	            
+	            for (Tarea tarea : proyecto.getListaTareas()) {
+	            	fw.write(
+	                        "  - [" + tarea.getTipoTarea() + "] "
+	                        + tarea.getDescripcionTarea()
+	                        + " | Estado: " + tarea.getEstadoTarea()
+	                        + " | Responsable: " + tarea.getResponsabelTarea()
+	                        + " | Fecha: " + tarea.getFecha()
+	                        + "\n");
+				} 
+			}
+			fw.close();
+			System.out.println("Reporte generado correctamente en reporte.txt");
+			
+		}catch(Exception e) {
+			System.out.println("Error generando reporte" + e.getMessage());
+		}
 		
 		
 		
