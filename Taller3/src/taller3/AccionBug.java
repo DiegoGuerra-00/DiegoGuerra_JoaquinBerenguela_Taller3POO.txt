@@ -7,10 +7,10 @@ package taller3;
 
 import java.util.ArrayList;
 
-public class AccionBug implements Visitor{
+public class AccionBug implements Visitor // se implementa el visitor
 
 	@Override
-	public void visit(Tarea tarea) {
+	public void visit(Tarea tarea) { // se procede printear por pantalla el mensaje si es que el objeto es de tipo bug
 		System.out.println("Tipo de tarea: bug");
 		String tipoTarea = tarea.getTipoTarea();
 		if(tipoTarea.equals("Bug")) {
@@ -22,4 +22,5 @@ public class AccionBug implements Visitor{
 	}
 
 }
+
 
