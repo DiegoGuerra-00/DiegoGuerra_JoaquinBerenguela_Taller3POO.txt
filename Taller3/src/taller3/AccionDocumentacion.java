@@ -8,10 +8,10 @@ package taller3;
 import java.util.ArrayList;
 
 
-public class AccionDocumentacion implements Visitor{
+public class AccionDocumentacion implements Visitor{ // se implementa la interfaz visitor
 
 	@Override
-	public void visit(Tarea tarea) {
+	public void visit(Tarea tarea) { // si el objeto es de tipo documentacion se procede a printerar por pantalla el mensaje 
 		
 		System.out.println("Tipo de tarea: Documentacion");
 		String tipotarea = tarea.getTipoTarea();
@@ -23,4 +23,5 @@ public class AccionDocumentacion implements Visitor{
 	}
 	
 }
+
 
