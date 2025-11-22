@@ -6,12 +6,12 @@ package taller3;
 
 import java.util.ArrayList;
 
-public class Proyecto {
+public class Proyecto { // creacion de clase proyecto con sus atributos
 	private String idProyect;
 	private String nombreProyect;
 	private String responsableProyect;
 	
-	private ArrayList<Tarea> listaTareas;
+	private ArrayList<Tarea> listaTareas; // un proyecto puede tener muchas tareas, se crea una lista de tipo tarea 
 	
 	public Proyecto(String idProyect, String nombreProyect, String responsableProyect) {
 		super();
@@ -46,4 +46,5 @@ public class Proyecto {
 	
 
 }
+
 
