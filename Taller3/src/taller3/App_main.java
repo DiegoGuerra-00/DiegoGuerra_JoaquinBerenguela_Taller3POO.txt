@@ -13,7 +13,7 @@ public class App_main {
 	public static void main(String[] args) throws FileNotFoundException {
 		Sistema sistema =  SistemaImpl.getIsntancia();
 		abrirProyecto(sistema);
-		abrirTarea(sistema);
+		abrirTarea(sistema);   // se llaman los metodos con el parametro sistema, asi se acceden a todos los metodos necesarios para la ejecucion del menú
 		arbrirUsuario(sistema);
 		despeglarMenu(sistema);
 		
@@ -21,13 +21,13 @@ public class App_main {
 
 	}
 	
-	public static void despeglarMenu(Sistema sistema) {
+	public static void despeglarMenu(Sistema sistema) { // la funcion de este es mostrar el menú por pantalla y que el usuario eliga.
 		
 		
 		Scanner scan = new Scanner(System.in);
 		String menuElegido = "";
 
-		do {
+		do { // do while
 			System.out.println("¿Usuario o administrador? (u / a / s para salir)");
 			System.out.print("> ");
 			menuElegido = scan.nextLine().toUpperCase();
@@ -44,7 +44,7 @@ public class App_main {
 				OpcionElegid = Integer.valueOf(scan.nextLine());
 
 				switch (OpcionElegid) { // incio opciones usuario
-				case 1:
+				case 1:  // dependiendo de la eleccion se hace la accion necesaria
 					
 					sistema.mostrarListaProyectos();
 					break;
@@ -77,7 +77,7 @@ public class App_main {
 				OpcionElegid2 = Integer.valueOf(scan.nextLine());
 				
 				switch (OpcionElegid2) {//inicio switch opciones admin 
-				case 1:
+				case 1: // dependiendo de la eleccion se hace la accion necesaria
 					sistema.mostrarTodosProyectosTareas();
 					break;
 				case 2:
@@ -122,7 +122,7 @@ public class App_main {
 		scan.close();
 		
 	}
-	public static void abrirProyecto(Sistema sistema) throws FileNotFoundException {
+	public static void abrirProyecto(Sistema sistema) throws FileNotFoundException {  
 		Scanner s = new Scanner(new File("proyectos.txt"));
 		while(s.hasNextLine()) { //se accede a la arch "proyectos" y se rellena la listaProyectos del Sistema
 			String linea = s.nextLine();
@@ -175,5 +175,6 @@ public class App_main {
 		
 	}
 }
+
 
 
