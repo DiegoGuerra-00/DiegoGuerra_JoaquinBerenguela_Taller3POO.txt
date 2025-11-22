@@ -7,7 +7,7 @@ package taller3;
 
 import java.util.ArrayList;
 
-public class PrioridadTipoStrategy implements PrioridadStrategy{
+public class PrioridadTipoStrategy implements PrioridadStrategy{// se implementa la interfaz para realizar el strategy
 
 	@Override
 	public void asignarPrioridad(ArrayList<Tarea> listaTareas) {
@@ -25,4 +25,5 @@ public class PrioridadTipoStrategy implements PrioridadStrategy{
 	}
 
 }
+
 
