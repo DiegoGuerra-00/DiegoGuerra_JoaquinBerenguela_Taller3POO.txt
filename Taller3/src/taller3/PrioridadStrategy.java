@@ -5,7 +5,8 @@ package taller3;
 
 import java.util.ArrayList;
 
-public interface PrioridadStrategy {	
+public interface PrioridadStrategy { // se crea la interfaz para realizar strategy
 	void asignarPrioridad(ArrayList<Tarea> listaTareas);
 }
+
 
