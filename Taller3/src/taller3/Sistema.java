@@ -5,7 +5,7 @@
 
 package taller3;
 
-public interface Sistema {
+public interface Sistema { // creacion de la interfaz sistema que luego sera llamado en el main 
 	void mostrarListaProyectos();
 	void filtrarTareasUsuario();
 	void actualizarEstadoTarea();
@@ -26,4 +26,5 @@ public interface Sistema {
 
 
 }
+
 
