@@ -5,8 +5,10 @@
 
 package taller3;
 
-public interface Visitoraccept {
+public interface Visitoraccept { 
+	// se crea otra inferace para el metodo accept, asi el visitor "visita" al objeto necesario 
 	void accept(Visitor visitor);
 
 }
+
 
