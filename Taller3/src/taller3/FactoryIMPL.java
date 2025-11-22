@@ -5,7 +5,7 @@
 
 package taller3;
 
-public class FactoryIMPL implements Factory {
+public class FactoryIMPL implements Factory { // se implementa la interaz del factory para la creacion de objetos
 
 	@Override
 	public Usuario crearUsuario(String usuario, String contraseña, String rol) {
@@ -24,4 +24,5 @@ public class FactoryIMPL implements Factory {
 	}
 
 }
+
 
