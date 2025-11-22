@@ -5,7 +5,7 @@
 
 package taller3;
 
-public class Tarea implements Visitoraccept {
+public class Tarea implements Visitoraccept { // creacion de la clase Tarea
 	private String idproyecto;
 	private String idtarea;
 	private String tipo;
@@ -91,4 +91,5 @@ public class Tarea implements Visitoraccept {
 	
 
 }
+
 
