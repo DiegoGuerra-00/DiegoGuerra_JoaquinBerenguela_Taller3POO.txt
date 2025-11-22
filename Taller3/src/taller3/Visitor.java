@@ -6,8 +6,9 @@ package taller3;
 
 import java.util.ArrayList;
 
-public interface Visitor {
+public interface Visitor { // creacion de la interface visitor 
 	void visit(Tarea tarea);
 
 }
+
 
