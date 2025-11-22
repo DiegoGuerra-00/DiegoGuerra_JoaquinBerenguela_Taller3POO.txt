@@ -10,24 +10,24 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class SistemaImpl implements Sistema {
-	
-	private ArrayList<Proyecto> listaProyecto = new ArrayList<>();
+public class SistemaImpl implements Sistema { //implementa la interfaz del Sistema
+	 
+	private ArrayList<Proyecto> listaProyecto = new ArrayList<>(); // creacion de listas de diferentes tipos, todo para ser usadas en los metodos 
 	private ArrayList<Usuario> listaUsuario = new ArrayList<>();
 	private ArrayList<Tarea> listaTarea = new ArrayList<>();
 	
-	private static SistemaImpl instancia;
+	private static SistemaImpl instancia; // se privatiza para la creacion del Singleteon
 
-	private PrioridadStrategy strategy;
+	private PrioridadStrategy strategy; // se privatiza para hacer el Strategy
 
-	private Factory factory;
+	private Factory factory; // se privatiza para hacer el Factory
 	
 	private SistemaImpl(Factory factory) {
-		this.factory = factory;
+		this.factory = factory;  // implementacion del factory
 	}	
-	private SistemaImpl() {}
+	private SistemaImpl() {}  // creacion de un constructor privado 
 	
-	public static SistemaImpl getIsntancia() {
+	public static SistemaImpl getIsntancia() { // se aplica el singleteon 
 		if(instancia == null) { //singleteon 
 			instancia = new SistemaImpl(new FactoryIMPL());
 			
@@ -37,7 +37,7 @@ public class SistemaImpl implements Sistema {
 
 
 	@Override
-	public void mostrarListaProyectos() {
+	public void mostrarListaProyectos() { // se muestra la lista de todos los proyectos
 	
 		for(Proyecto proyect : listaProyecto) {
 			System.out.println("Id proyecto : "+proyect.getIdProyect());
@@ -49,7 +49,7 @@ public class SistemaImpl implements Sistema {
 	}
 
 	@Override
-	public void filtrarTareasUsuario() {
+	public void filtrarTareasUsuario() { // se filtra las tareas del usuario, se debera indicar que usuario se quiere filtrar
 		// colab1 , colab2
 		Scanner s = new Scanner(System.in);
 		System.out.print("Indique usuario (colab1 / colab2): ");
@@ -78,7 +78,7 @@ public class SistemaImpl implements Sistema {
 	}
 
 	@Override
-	public void actualizarEstadoTarea() {
+	public void actualizarEstadoTarea() { // se actualiza el estado de una tarea, el usuario ingresa que tarea quiere actualizar 
 		Scanner scan = new Scanner(System.in);
 		String idElegido;
 		System.out.println("Listado de tareas ");
@@ -106,7 +106,7 @@ public class SistemaImpl implements Sistema {
 	}
 
 	@Override
-	public void aplicarVisitorTareas() {
+	public void aplicarVisitorTareas() { // se aplica el visitor y se printea por pantalla
 		Visitor bugVisitor =  new AccionBug();
 		Visitor featureVisitor =  new AccionFeature();
 		Visitor accionDocumentacion =  new AccionDocumentacion();
@@ -132,7 +132,7 @@ public class SistemaImpl implements Sistema {
 	}
 
 	@Override
-	public void mostrarTodosProyectosTareas() {
+	public void mostrarTodosProyectosTareas() { // se muestran todos los proyectos junto a sus tareas
 		System.out.println("Lista completa de proyectos y sus tareas");
 		System.out.println();
 		
@@ -154,8 +154,8 @@ public class SistemaImpl implements Sistema {
 		
 	}
 
-	@Override
-	public void agregarOEliminarProyectosYTareasAsociadas() {
+	@Override  
+	public void agregarOEliminarProyectosYTareasAsociadas() { // se eliminan proyectos y las tareas asociadas a este , se pide informacion para que el usuario ingrese
 		
 		Scanner s = new Scanner(System.in);
 		
@@ -200,7 +200,7 @@ public class SistemaImpl implements Sistema {
 	}
 
 	@Override
-	public void agregarOEliminarTareaProyecto() {
+	public void agregarOEliminarTareaProyecto() { // se agregan y/o eliminan tareas de un proyecto en especifico
 		
 		Scanner s = new Scanner(System.in);
 		
@@ -286,7 +286,7 @@ public class SistemaImpl implements Sistema {
 	}
 
 	@Override
-	public void asignarPrioridadesStrategy() {
+	public void asignarPrioridadesStrategy() { // se aplica el strategy por las prioridades
 		
 		if (strategy == null) {
 			System.out.println("No hay estrategia seleccionada.");
@@ -299,13 +299,13 @@ public class SistemaImpl implements Sistema {
 	}
 	
 	@Override
-	public void setPrioridadStrategy(PrioridadStrategy strategy) {
+	public void setPrioridadStrategy(PrioridadStrategy strategy) { // se aplica el strategy 
 		this.strategy = strategy;
 	}
 	
 
 	@Override
-	public void generarReporteProyecto() {
+	public void generarReporteProyecto() { // se crea un archivo con toda la info de los proyectos 
 		
 		try {
 			FileWriter fw = new FileWriter("reporte.txt");
@@ -341,13 +341,13 @@ public class SistemaImpl implements Sistema {
 	}
 
 	@Override
-	public void agregarUsuario(String usuario_ , String contraseña, String rol) {
+	public void agregarUsuario(String usuario_ , String contraseña, String rol) { // se usa para la implementacion del factory, crea objetos tipo usuario 
 		Usuario usuario = factory.crearUsuario(usuario_, contraseña, rol);
 		listaUsuario.add(usuario);
 	}
 
 	@Override
-	public void agregarProyecto(String idProyect, String NombreProyect, String usuarioProyecto) {
+	public void agregarProyecto(String idProyect, String NombreProyect, String usuarioProyecto) {// se usa para la implementacion del factory, crea objetos tipo Proyecto
 		Proyecto proyecto = factory.crearProyecto(idProyect, NombreProyect, usuarioProyecto);
 		listaProyecto.add(proyecto);
 		
@@ -357,7 +357,7 @@ public class SistemaImpl implements Sistema {
 
 	@Override
 	public void agregarTareas(String proyecto, String idTarea,String tipo, String descripcion, String estado, String responsable,
-			String complejidad, String fecha) {
+			String complejidad, String fecha) {// se usa para la implementacion del factory, crea objetos tipo Tarea
 		Tarea tarea = factory.crearTareas(proyecto, idTarea, tipo, descripcion, estado, responsable, complejidad, fecha);
 		listaTarea.add(tarea);
 		
@@ -373,4 +373,5 @@ public class SistemaImpl implements Sistema {
 	
 
 }
+
 
