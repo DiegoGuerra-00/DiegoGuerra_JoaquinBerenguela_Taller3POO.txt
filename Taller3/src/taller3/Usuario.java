@@ -5,7 +5,7 @@
 
 package taller3;
 
-public class Usuario {
+public class Usuario { // se crea la clase usuario
 	private String nombreUsuario;
 	private String contraseñaUsuario;
 	private String rolUsuario;
@@ -38,4 +38,5 @@ public class Usuario {
 	
    //-
 }
+
 
