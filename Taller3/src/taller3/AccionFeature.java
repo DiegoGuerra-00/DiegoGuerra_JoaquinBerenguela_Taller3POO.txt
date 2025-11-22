@@ -7,10 +7,10 @@ package taller3;
 
 import java.util.ArrayList;
 
-public class AccionFeature implements Visitor{
+public class AccionFeature implements Visitor{ // se implementa interfaz visitor 
 
 	@Override
-	public void visit(Tarea tarea) {
+	public void visit(Tarea tarea) {//si el objeto es de tipo feature se procede a printerar por pantalla el mensaje 
 		System.out.println("Tipo de tarea: Feature");
 		String tipotarea = tarea.getTipoTarea();
 		if(tipotarea.equalsIgnoreCase("Feature")) {
@@ -21,4 +21,5 @@ public class AccionFeature implements Visitor{
 	}
 
 }
+
 
